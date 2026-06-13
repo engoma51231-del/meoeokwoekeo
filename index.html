@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Arman 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+font-family:'Poppins',sans-serif;
+height:100vh;
+overflow:hidden;
+background:linear-gradient(135deg,#ffd6e8,#ffe7f3,#fff3f8);
+display:flex;
+justify-content:center;
+align-items:center;
+position:relative;
+}
+
+/* screens */
+.screen{
+position:absolute;
+width:100%;
+display:flex;
+justify-content:center;
+align-items:center;
+transition:0.9s ease;
+}
+
+.hidden{
+opacity:0;
+pointer-events:none;
+transform:scale(0.85);
+}
+
+/* card */
+.card{
+width:90%;
+max-width:720px;
+background:rgba(255,255,255,0.92);
+backdrop-filter:blur(8px);
+padding:40px;
+border-radius:35px;
+text-align:center;
+box-shadow:0 15px 50px rgba(255,105,180,0.18);
+}
+
+.title{
+font-family:'Pacifico',cursive;
+font-size:3rem;
+color:#ff5fa2;
+}
+
+.subtitle{
+color:#ff8ab8;
+margin-top:10px;
+}
+
+/* button */
+.button{
+background:#ff79b6;
+color:white;
+border:none;
+padding:16px 32px;
+border-radius:999px;
+font-size:1.1rem;
+cursor:pointer;
+margin-top:20px;
+}
+
+/* reason box */
+.reason{
+background:#fff6fb;
+padding:25px;
+border-radius:20px;
+margin-top:20px;
+min-height:120px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:1.3rem;
+color:#555;
+}
+
+/* trackers */
+.tracker{
+margin-top:10px;
+color:#ff4f9a;
+font-family:'Pacifico',cursive;
+}
+
+/* secret box */
+.secretBox{
+margin-top:15px;
+background:#fff0f6;
+padding:20px;
+border-radius:20px;
+}
+
+input{
+padding:10px;
+border-radius:10px;
+border:1px solid #ff9ccf;
+width:70%;
+margin-top:10px;
+}
+
+.smallBtn{
+margin-top:10px;
+padding:10px 20px;
+border:none;
+border-radius:15px;
+background:#ff69b4;
+color:white;
+cursor:pointer;
+}
+
+/* hearts */
+.heart{
+position:absolute;
+bottom:-60px;
+animation:float linear infinite;
+opacity:0.8;
+}
+
+@keyframes float{
+to{transform:translateY(-120vh);}
+}
+
+/* shake */
+@keyframes shake{
+0%,100%{transform:translateX(0);}
+25%{transform:translateX(-5px);}
+50%{transform:translateX(5px);}
+75%{transform:translateX(-5px);}
+}
+
+.shake{
+animation:shake 0.3s;
+}
+
+/* sparkle */
+.sparkle{
+position:absolute;
+font-size:50px;
+left:50%;
+top:50%;
+transform:translate(-50%,-50%);
+animation:burst 1s forwards;
+}
+
+@keyframes burst{
+0%{opacity:0;transform:translate(-50%,-50%) scale(0.2);}
+50%{opacity:1;transform:translate(-50%,-50%) scale(1.5);}
+100%{opacity:0;transform:translate(-50%,-50%) scale(3);}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 MUSIC (YOU MUST ADD SOURCE) -->
+<audio id="music" loop>
+<!-- Option 1: upload mp3 yourself -->
+<source src="your-music.mp3" type="audio/mp3">
+
+<!-- Option 2 (recommended): replace with YouTube embed below in JS -->
+</audio>
+
+<!-- HOME -->
+<div class="screen" id="home">
+<div class="card">
+<h1 class="title">For Arman 💖</h1>
+<p class="subtitle">Reasons Why I Love You</p>
+<button class="button" onclick="start()">✨ Open ✨</button>
+</div>
+</div>
+
+<!-- MAIN -->
+<div class="screen hidden" id="main">
+<div class="card">
+
+<h1 class="title">💌 Dear Arman</h1>
+
+<div class="reason" id="reason"></div>
+
+<div class="tracker">
+💞 Together for <span id="days"></span> days
+</div>
+
+<div class="tracker">
+🎂 Until Dec 1, 2026: <span id="count"></span> days
+</div>
+
+<!-- PASSWORD -->
+<div class="secretBox" id="pwBox">
+<h3>🔐 Secret Unlock</h3>
+<input id="pw" placeholder="Enter password">
+<br>
+<button class="smallBtn" onclick="check()">Unlock</button>
+
+<p id="msg" style="display:none;margin-top:10px;">
+Because “always and forever” was never just words—it was us.
+</p>
+</div>
+
+<!-- DECEMBER LETTER -->
+<div class="secretBox" id="decLetter" style="display:none;">
+<h3>💌 December Letter</h3>
+<p>
+Happy anniversary, Arman.<br><br>
+A year and 6 months later, and I still choose you in every lifetime.<br><br>
+You are my favorite forever.<br><br>
+Love, Lana 💖
+</p>
+</div>
+
+</div>
+</div>
+
+<script>
+
+/* 💖 DAILY REASON */
+const reasons=[
+"Because your smile fixes everything.",
+"Because you feel like home.",
+"Because you make life softer.",
+"Because I trust you completely.",
+"Because you are my safe place.",
+"Because you are my favorite person."
+];
+
+function start(){
+document.getElementById("home").classList.add("hidden");
+document.getElementById("main").classList.remove("hidden");
+
+document.getElementById("reason").innerText =
+reasons[Math.floor(Math.random()*reasons.length)];
+
+/* 🎵 PLAY MUSIC (must be user click triggered) */
+document.getElementById("music").play();
+}
+
+/* 💞 DAYS TOGETHER */
+const startDate = new Date("2025-06-01"); // adjust if needed
+document.getElementById("days").innerText =
+Math.floor((new Date()-startDate)/86400000);
+
+/* 🎂 COUNTDOWN */
+const target = new Date("2026-12-01");
+document.getElementById("count").innerText =
+Math.ceil((target-new Date())/86400000);
+
+/* 🔐 PASSWORD */
+function check(){
+let val=document.getElementById("pw").value.toLowerCase().trim();
+
+if(val==="always and forever"){
+document.getElementById("msg").style.display="block";
+} else {
+let box=document.getElementById("pwBox");
+box.classList.add("shake");
+setTimeout(()=>box.classList.remove("shake"),300);
+}
+}
+
+/* 💌 DEC 1 LETTER TRIGGER */
+const today = new Date();
+if(today.getMonth()===11 && today.getDate()===1){
+document.getElementById("decLetter").style.display="block";
+}
+
+/* 💖 FLOATING HEARTS */
+for(let i=0;i<80;i++){
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="💖";
+h.style.left=Math.random()*100+"vw";
+h.style.fontSize=(10+Math.random()*30)+"px";
+h.style.animationDuration=(5+Math.random()*6)+"s";
+document.body.appendChild(h);
+}
+
+</script>
+
+</body>
+</html>
